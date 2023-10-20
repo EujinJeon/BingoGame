@@ -66,8 +66,10 @@ int main()
 			}
 		}
 
-		int iCheck1 = 0, iCheck2 = 0 , iCheck3 = 0, iCheck4 = 0;
+		if (bAcc) continue;
 
+		int iCheck1 = 0, iCheck2 = 0 , iCheck3 = 0, iCheck4 = 0;
+		Bingo = 0;
 		for (int i = 0; i < 5; i++)
 		{
 
@@ -79,13 +81,13 @@ int main()
 					++iCheck1;
 			}
 
-			if (iCheck1 == 5) 
+			if (iCheck1 == 5)
 				++Bingo;
 				
 			//¼¼·Î ºù°í °Ë»ç
 			for (int j = 0; j < 5; j++)
 			{
-				if (iNumber[i * 5 + 5 * j] == INT_MAX)
+				if (iNumber[j * 5 + i] == INT_MAX)
 					++iCheck2;
 			}
 
@@ -115,10 +117,15 @@ int main()
 				if (iCheck4 == 5)
 					++Bingo;
 			}
+
+			// 8ºù°íÀÏ ½Ã ½Â¸® ¹®±¸ ¶ç¿ì°í Á¾·á
+			if (Bingo == 5)
+			{
+				system("cls");
+				std::cout << "Bingo!!" << std::endl;
+				break;
+			}
 		}
-
-		if (bAcc) continue;
-
 	}
 
 	return 0;
